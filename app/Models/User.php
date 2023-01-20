@@ -4,6 +4,7 @@ namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
@@ -41,4 +42,19 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public function pools(): BelongsToMany
+    {
+        return $this->belongsToMany(Pool::class, 'pool_user', 'user_id', 'pool_id');
+    }
+
+    public function attendedCourses(): BelongsToMany
+    {
+        return $this->belongsToMany(Course::class, 'attended_course', 'user_id', 'course_id');
+    }
+
+    public function ownedCourses(): BelongsToMany
+    {
+        return $this->belongsToMany(Course::class, 'own_course', 'user_id', 'course_id');
+    }
 }
