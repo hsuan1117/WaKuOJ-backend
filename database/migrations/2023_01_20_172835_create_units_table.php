@@ -16,6 +16,9 @@ return new class extends Migration
         Schema::create('units', function (Blueprint $table) {
             $table->id();
             $table->foreignId('course_id')->constrained()->on('courses')->onDelete('cascade');
+            $table->string('name');
+            $table->string('description');
+            $table->boolean('public')->default(false);
             $table->timestamps();
         });
     }

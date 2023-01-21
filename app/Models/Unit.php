@@ -10,6 +10,13 @@ class Unit extends Model
 {
     use HasFactory;
 
+    protected $fillable = [
+        'name',
+        'description',
+        'course_id',
+        'public'
+    ];
+
     public function course()
     {
         return $this->belongsTo(Course::class);
