@@ -13,10 +13,13 @@ class Problem extends Model
         'type', # 0: judge, 1: text, 2: select, 3: multiple select
         'title',
         'description',
+
+        # 此處的 public ：是否要顯示在Problems介面中（面向學生）
         'public'
     ];
 
     protected $hidden = [
+        # 題庫是面向出題者的
         'pool_id'
     ];
 
@@ -25,8 +28,8 @@ class Problem extends Model
         return $this->belongsTo(Pool::class);
     }
 
-    public function exam()
+    public function author()
     {
-        return $this->belongsTo(Exam::class);
+        return $this->belongsTo(User::class, 'author');
     }
 }

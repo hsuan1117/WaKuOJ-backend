@@ -17,6 +17,9 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->string('description');
+
+            # 題庫是否公開
+            $table->boolean('public')->default(false);
             $table->timestamps();
         });
     }

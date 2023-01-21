@@ -13,7 +13,10 @@ class Pool extends Model
 
     protected $fillable = [
         'name',
-        'description'
+        'description',
+
+        # 題庫是否公開 面向出題者
+        'public'
     ];
 
     public function problems(): HasMany
@@ -21,7 +24,13 @@ class Pool extends Model
         return $this->hasMany(Problem::class);
     }
 
-    public function users(): BelongsToMany {
+    public function users(): BelongsToMany
+    {
         return $this->belongsToMany(User::class, 'user_pool');
+    }
+
+    public function scopePublic($query)
+    {
+        return $query->where('public', true);
     }
 }

@@ -45,7 +45,7 @@ class User extends Authenticatable
 
     public function pools(): BelongsToMany
     {
-        return $this->belongsToMany(Pool::class, 'pool_user', 'user_id', 'pool_id');
+        return $this->belongsToMany(Pool::class, 'user_pool', 'user_id', 'pool_id');
     }
 
     public function attendedCourses(): BelongsToMany
