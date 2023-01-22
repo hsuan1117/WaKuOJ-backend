@@ -25,6 +25,6 @@ Route::prefix('auth')->group(function () {
     Route::post('register', [AuthController::class, 'register']);
 });
 
-Route::prefix('question_bank')->group(function () {
+Route::prefix('question_bank')->middleware('auth:sanctum')->group(function () {
     Route::apiResource('pools', PoolController::class);
 });

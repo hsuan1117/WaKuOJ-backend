@@ -63,6 +63,10 @@ class AuthController extends Controller
             'email' => $request->email,
             'password' => bcrypt($request->password)
         ]);
+        $user->pools()->create([
+            'name' => '預設題庫',
+            'description' => '預設題庫'
+        ]);
 
         $token = $user->createToken('Personal Access Token');
 
