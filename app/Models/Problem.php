@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class Problem extends Model
 {
@@ -15,7 +16,8 @@ class Problem extends Model
         'description',
 
         # 此處的 public ：是否要顯示在Problems介面中（面向學生）
-        'public'
+        'public',
+        'author'
     ];
 
     protected $hidden = [
@@ -28,8 +30,8 @@ class Problem extends Model
         return $this->belongsTo(Pool::class);
     }
 
-    public function author()
+    public function author(): BelongsTo
     {
-        return $this->belongsTo(User::class, 'author');
+        return $this->belongsTo(User::class, 'author', 'id', 'users');
     }
 }

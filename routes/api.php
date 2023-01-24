@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\PoolController;
+use App\Http\Controllers\ProblemController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -27,4 +28,5 @@ Route::prefix('auth')->group(function () {
 
 Route::prefix('question_bank')->middleware('auth:sanctum')->group(function () {
     Route::apiResource('pools', PoolController::class);
+    Route::apiResource('pools.problems', ProblemController::class);
 });
